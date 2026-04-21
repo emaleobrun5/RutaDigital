@@ -1,0 +1,114 @@
+/* =========================
+   FUENTES
+========================= */
+@font-face {
+  font-family: 'Satoshi';
+  src: url('./assets/fonts/satoshi/Satoshi-Variable.woff2') format('woff2'),
+       url('./assets/fonts/satoshi/Satoshi-Variable.woff') format('woff');
+  font-weight: 300 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+/* =========================
+   VARIABLES GLOBALES
+========================= */
+:root {
+  /* PALETA — cream + azul profundo + coral */
+  --cream: #F5F1E8;
+  --cream-2: #EFEADE;
+  --ink: #0E1B2C;          /* azul noche, casi negro */
+  --ink-2: #182740;
+  --ink-soft: #2A3B56;
+  --paper: #FFFFFF;
+  --line: #E5DFD1;
+  --line-dark: rgba(245, 241, 232, 0.12);
+
+  --accent: #FF5A2C;       /* coral vivo */
+  --accent-hover: #E64A1E;
+  --accent-soft: rgba(255, 90, 44, 0.08);
+
+  --muted: #6B7280;
+  --muted-dark: rgba(245, 241, 232, 0.55);
+
+  /* TIPO */
+  --font-main: 'Satoshi', system-ui, sans-serif;
+
+  /* LAYOUT */
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 32px;
+  --radius-pill: 999px;
+  --section: 120px;
+}
+
+/* =========================
+   RESET
+========================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+html, body, #root { width: 100%; min-height: 100%; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-main);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  font-feature-settings: 'ss01', 'cv01';
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  color: inherit;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+p { line-height: 1.6; }
+
+a { text-decoration: none; color: inherit; }
+button { font-family: inherit; border: none; background: none; cursor: pointer; }
+img { display: block; max-width: 100%; }
+
+/* =========================
+   UTILIDADES
+========================= */
+.container {
+  width: min(1280px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* =========================
+   ANIMACIONES
+========================= */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.75s cubic-bezier(0.2, 0.7, 0.2, 1),
+              transform 0.75s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
