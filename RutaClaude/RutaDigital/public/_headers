@@ -1,0 +1,16 @@
+# ─────────────────────────────────────────────
+# Security headers — aplican a todas las rutas
+# ─────────────────────────────────────────────
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://assets.calendly.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://assets.calendly.com; font-src 'self' data: https://fonts.gstatic.com https://assets.calendly.com; img-src 'self' data: blob: https://*.cloudflarestream.com https://*.calendly.com; media-src 'self' blob: https://*.cloudflarestream.com; frame-src https://calendly.com https://*.calendly.com https://*.cloudflarestream.com; connect-src 'self' https://calendly.com https://*.calendly.com https://*.cloudflarestream.com; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; upgrade-insecure-requests
+
+# ─────────────────────────────────────────────
+# Assets con hash de Vite → cache agresivo (1 año)
+# ─────────────────────────────────────────────
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
