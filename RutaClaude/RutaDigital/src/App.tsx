@@ -3,13 +3,14 @@ import { motion, useMotionValue, useSpring, useScroll, useTransform } from 'moti
 import rutaLogo from './assets/RUTADIgitalLogo.svg'
 import { IntroPlayer } from './IntroPlayer'
 import { PropuestaSection } from './PropuestaSection'
-import { ServiciosSection, TICKER } from './ServiciosSection'
+import { ServiciosSection } from './ServiciosSection'
 import { QuienesSomosSection } from './QuienesSomosSection'
 import { AgendaSection } from './AgendaSection'
 import { Footer } from './Footer'
 import { HeroLogo } from './HeroLogo'
 import { NavMenu } from './NavMenu'
 import { ScrollProgress } from './ScrollProgress'
+import { SalesChartAscii } from './SalesChartAscii'
 import './App.css'
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
@@ -81,7 +82,17 @@ function MagneticLink({
 export default function App() {
   const [introComplete, setIntroComplete] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const doubled = [...TICKER, ...TICKER, ...TICKER, ...TICKER]
+  // Detecta mobile para renderizar el gráfico ASCII solo ahí (evita RAF en desktop).
+  const [isMobile, setIsMobile] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches
+  )
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)')
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches)
+    mq.addEventListener('change', handler)
+    return () => mq.removeEventListener('change', handler)
+  }, [])
 
   // Parallax del logo/ascii del hero al scrollear
   const { scrollY } = useScroll()
@@ -207,19 +218,15 @@ export default function App() {
         </div>
       </div>
 
-      {/* ── TICKER ── */}
-      <div className="ticker-bar">
-        <motion.div
-          className="ticker-track"
-          animate={{ x: ['0%', '-50%'] }}
-          transition={{ duration: 28, ease: 'linear', repeat: Infinity }}
-        >
-          {doubled.map((name, i) => (
-            <div key={i} className="ticker-item">{name}</div>
-          ))}
-        </motion.div>
-      </div>
+      {/* ── Gráfico ASCII de ventas — solo mobile, entre hero y propuesta ── */}
+      {isMobile && (
+        <div className="sales-chart-between" aria-hidden="true">
+          <SalesChartAscii className="sales-chart-inline" fps={12} intensity={1} />
+        </div>
+      )}
+
       <PropuestaSection />
+
       <ServiciosSection />
       <QuienesSomosSection />
       <AgendaSection />

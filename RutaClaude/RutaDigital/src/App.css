@@ -562,12 +562,12 @@ body {
 
 .propuesta-card {
   border-radius: var(--radius);
-  border: 1px solid rgba(21, 87, 255, 0.35);
-  background: #1557FF;
+  border: 1px solid rgba(21, 87, 255, 0.22);
+  background: linear-gradient(145deg, #0f3ab8 0%, #0a2a85 100%);
   box-shadow:
-    0 2px 0 rgba(255,255,255,0.08) inset,
-    0 32px 80px rgba(21,87,255,0.35),
-    0 8px 32px rgba(0,0,0,0.5);
+    0 2px 0 rgba(255,255,255,0.05) inset,
+    0 28px 70px rgba(21,87,255,0.18),
+    0 8px 32px rgba(0,0,0,0.45);
   padding: 72px 48px 80px;
   display: flex;
   flex-direction: column;
@@ -1276,6 +1276,71 @@ body {
 }
 
 /* ══════════════════════════════════════
+   SALES CHART (ASCII) — entre hero y propuesta
+══════════════════════════════════════ */
+.sales-chart-between {
+  position: relative;
+  margin: 18px 14px;
+  height: clamp(120px, 16vh, 180px);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 10% 90%, rgba(21,87,255,0.10) 0%, transparent 55%),
+    radial-gradient(ellipse at 90% 10%, rgba(0,212,255,0.12) 0%, transparent 55%),
+    linear-gradient(135deg, var(--void) 0%, var(--abismo) 100%);
+  border: 1px solid rgba(22,28,45,0.9);
+  isolation: isolate;
+}
+
+/* Vignette lateral para fundir el loop del chart con los bordes */
+.sales-chart-between::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background: linear-gradient(
+    90deg,
+    var(--abismo) 0%,
+    transparent 8%,
+    transparent 92%,
+    var(--abismo) 100%
+  );
+  opacity: 0.7;
+}
+
+.sales-chart-inline {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+  font-family: 'Space Mono', ui-monospace, monospace;
+  font-size: clamp(5px, 0.7vw, 10px);
+  line-height: 1.0;
+  letter-spacing: 0;
+  color: var(--muted);
+  white-space: pre;
+  user-select: none;
+  pointer-events: none;
+  opacity: 0.75;
+  overflow: hidden;
+}
+
+.sales-chart-inline .sc-brand { color: var(--brand-l); }
+.sales-chart-inline .sc-cyan  { color: var(--cyan); }
+.sales-chart-inline .sc-dim   { color: var(--muted); opacity: 0.55; }
+
+@media (max-width: 768px) {
+  .sales-chart-between {
+    height: clamp(90px, 18vh, 130px);
+    margin: 14px 10px;
+  }
+}
+
+/* ══════════════════════════════════════
    SCROLL PROGRESS
 ══════════════════════════════════════ */
 .scroll-progress {
@@ -1699,11 +1764,8 @@ body {
     min-height: auto;
   }
 
-  .hero-right {
-    height: 300px;
-    order: -1;
-    margin: 12px 12px 0;
-  }
+  /* En mobile ocultamos el HeroLogo; el card queda solo con el left */
+  .hero-right { display: none; }
 
   .hero-left { padding: 32px 24px 48px; }
   .hero-heading { font-size: 2.2rem; }
