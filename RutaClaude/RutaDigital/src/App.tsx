@@ -3,7 +3,7 @@ import { motion, useMotionValue, useSpring, useScroll, useTransform } from 'moti
 import rutaLogo from './assets/RUTADIgitalLogo.svg'
 import { IntroPlayer } from './IntroPlayer'
 import { PropuestaSection } from './PropuestaSection'
-import { ServiciosSection } from './ServiciosSection'
+import { ServiciosSection, TICKER } from './ServiciosSection'
 import { QuienesSomosSection } from './QuienesSomosSection'
 import { AgendaSection } from './AgendaSection'
 import { Footer } from './Footer'
@@ -218,10 +218,22 @@ export default function App() {
         </div>
       </div>
 
-      {/* ── Gráfico ASCII de ventas — solo mobile, entre hero y propuesta ── */}
-      {isMobile && (
+      {/* ── Entre hero y propuesta: ticker en desktop, ASCII chart en mobile ── */}
+      {isMobile ? (
         <div className="sales-chart-between" aria-hidden="true">
           <SalesChartAscii className="sales-chart-inline" fps={12} intensity={1} />
+        </div>
+      ) : (
+        <div className="ticker-bar">
+          <motion.div
+            className="ticker-track"
+            animate={{ x: ['0%', '-50%'] }}
+            transition={{ duration: 28, ease: 'linear', repeat: Infinity }}
+          >
+            {[...TICKER, ...TICKER, ...TICKER, ...TICKER].map((name, i) => (
+              <div key={i} className="ticker-item">{name}</div>
+            ))}
+          </motion.div>
         </div>
       )}
 
