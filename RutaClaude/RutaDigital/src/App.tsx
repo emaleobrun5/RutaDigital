@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, type ReactNode } from 'react'
 import { motion, useMotionValue, useSpring, useScroll, useTransform } from 'motion/react'
 import rutaLogo from './assets/RUTADIgitalLogo.svg'
+import whatsappLogo from './assets/WhatsApp.svg.png'
 import { IntroPlayer } from './IntroPlayer'
 import { PropuestaSection } from './PropuestaSection'
 import { ServiciosSection, TICKER } from './ServiciosSection'
@@ -36,7 +37,7 @@ const heroWord = {
   visible: { y: '0%', transition: { duration: 0.85, ease: EASE } },
 }
 
-function MagneticLink({
+export function MagneticLink({
   href,
   className,
   children,
@@ -196,10 +197,11 @@ export default function App() {
               transition={{ duration: 0.6, delay: 1.15, ease: EASE }}
             >
               <MagneticLink href="#agenda" className="cta-primary">
-                Empezar ahora <span className="arr">→</span>
+                Conoce nuestras propuestas <span className="arr">→</span>
               </MagneticLink>
-              <MagneticLink href="#servicios" className="cta-ghost" strength={0.25}>
-                Explorar
+              <MagneticLink href="#servicios" className="cta-whatsapp" strength={0.25}>
+                <img src={whatsappLogo} alt="" className="cta-whatsapp__icon" />
+                Contactanos por Whatsapp
               </MagneticLink>
             </motion.div>
           </div>

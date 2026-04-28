@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'motion/react'
+import { MagneticLink } from './App'
+import whatsappLogo from './assets/WhatsApp.svg.png'
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
 
@@ -66,6 +68,19 @@ export function PropuestaSection() {
               </button>
             )}
           </div>
+        </motion.div>
+
+        <motion.div
+          className="propuesta-cta"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.45, ease: EASE }}
+        >
+          <MagneticLink href="#servicios" className="cta-whatsapp" strength={0.25}>
+            <img src={whatsappLogo} alt="" className="cta-whatsapp__icon" />
+            Contactanos por Whatsapp
+          </MagneticLink>
         </motion.div>
       </div>
     </motion.div>
