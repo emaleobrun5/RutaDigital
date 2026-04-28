@@ -199,7 +199,7 @@ export default function App() {
               <MagneticLink href="#agenda" className="cta-primary">
                 Conoce nuestras propuestas <span className="arr">→</span>
               </MagneticLink>
-              <MagneticLink href="#servicios" className="cta-whatsapp" strength={0.25}>
+              <MagneticLink href="https://wa.me/59892745212?text=Hola%2C%20quiero%20hablar%20con%20ventas%20de%20Ruta%20Digital" className="cta-whatsapp" strength={0.25}>
                 <img src={whatsappLogo} alt="" className="cta-whatsapp__icon" />
                 Contactanos por Whatsapp
               </MagneticLink>
