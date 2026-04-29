@@ -76,6 +76,13 @@
   margin-bottom: 56px;
 }
 
+@media (max-width: 768px) {
+  .ctaRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
 .ctaPrimary {
   display: inline-flex;
   align-items: center;
@@ -162,41 +169,11 @@
   position: relative;
 }
 
-/* PLACEHOLDER — luego reemplazás por img real */
-.imagePlaceholder {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  background:
-    repeating-linear-gradient(
-      45deg,
-      var(--ink) 0 14px,
-      var(--ink-2) 14px 28px
-    );
-  color: var(--cream);
-  font-size: 1rem;
-  font-weight: 600;
-  text-align: center;
-  padding: 24px;
-}
-
-.imagePlaceholder small {
-  font-size: 0.72rem;
-  color: var(--muted-dark);
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-/* STICKER FLOTANTE */
+/* STICKER */
 .sticker {
   position: absolute;
-  bottom: -24px;
-  left: -24px;
+  bottom: 24px;
+  left: 24px;
   background: var(--accent);
   color: #fff;
   padding: 20px 24px;
@@ -225,6 +202,6 @@
 }
 
 @media (max-width: 600px) {
-  .sticker { bottom: -16px; left: -12px; padding: 16px 18px; }
+  .sticker { bottom: 12px; left: 12px; padding: 16px 18px; }
   .stickerNum { font-size: 1.5rem; }
 }

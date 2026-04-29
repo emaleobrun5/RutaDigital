@@ -49,16 +49,11 @@ function Hero() {
         {/* LADO DERECHO — imagen grande */}
         <div className={styles.right}>
           <div className={styles.imageBox}>
-            {/* PLANTILLA: imagen del equipo / oficina / trabajo */}
-            <div className={styles.imagePlaceholder}>
-              <span>Imagen del equipo o<br/>proceso de trabajo</span>
-              <small>reemplazar en /assets/hero-main.jpg</small>
+            {/* Sticker dentro de la imagen */}
+            <div className={styles.sticker}>
+              <span className={styles.stickerNum}>+200k</span>
+              <span className={styles.stickerLabel}>en ventas al mes<br/>para nuestros clientes</span>
             </div>
-          </div>
-          {/* Sticker flotante */}
-          <div className={styles.sticker}>
-            <span className={styles.stickerNum}>+200k</span>
-            <span className={styles.stickerLabel}>en ventas al mes<br/>para nuestros clientes</span>
           </div>
         </div>
       </div>

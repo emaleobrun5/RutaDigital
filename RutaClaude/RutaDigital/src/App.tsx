@@ -11,7 +11,6 @@ import { Footer } from './Footer'
 import { HeroLogo } from './HeroLogo'
 import { NavMenu } from './NavMenu'
 import { ScrollProgress } from './ScrollProgress'
-import { SalesChartAscii } from './SalesChartAscii'
 import './App.css'
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
@@ -83,17 +82,6 @@ export function MagneticLink({
 export default function App() {
   const [introComplete, setIntroComplete] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  // Detecta mobile para renderizar el gráfico ASCII solo ahí (evita RAF en desktop).
-  const [isMobile, setIsMobile] = useState(
-    () => typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches
-  )
-
-  useEffect(() => {
-    const mq = window.matchMedia('(max-width: 768px)')
-    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches)
-    mq.addEventListener('change', handler)
-    return () => mq.removeEventListener('change', handler)
-  }, [])
 
   // Parallax del logo/ascii del hero al scrollear
   const { scrollY } = useScroll()
@@ -197,7 +185,7 @@ export default function App() {
               transition={{ duration: 0.6, delay: 1.15, ease: EASE }}
             >
               <MagneticLink href="#agenda" className="cta-primary">
-                Conoce nuestras propuestas <span className="arr">→</span>
+                Conoce nuestras propuestas
               </MagneticLink>
               <MagneticLink href="https://wa.me/59892745212?text=Hola%2C%20quiero%20hablar%20con%20ventas%20de%20Ruta%20Digital" className="cta-whatsapp" strength={0.25}>
                 <img src={whatsappLogo} alt="" className="cta-whatsapp__icon" />
@@ -220,24 +208,18 @@ export default function App() {
         </div>
       </div>
 
-      {/* ── Entre hero y propuesta: ticker en desktop, ASCII chart en mobile ── */}
-      {isMobile ? (
-        <div className="sales-chart-between" aria-hidden="true">
-          <SalesChartAscii className="sales-chart-inline" fps={12} intensity={1} />
-        </div>
-      ) : (
-        <div className="ticker-bar">
-          <motion.div
-            className="ticker-track"
-            animate={{ x: ['0%', '-50%'] }}
-            transition={{ duration: 28, ease: 'linear', repeat: Infinity }}
-          >
-            {[...TICKER, ...TICKER, ...TICKER, ...TICKER].map((name, i) => (
-              <div key={i} className="ticker-item">{name}</div>
-            ))}
-          </motion.div>
-        </div>
-      )}
+      {/* ── Entre hero y propuesta: ticker ── */}
+      <div className="ticker-bar">
+        <motion.div
+          className="ticker-track"
+          animate={{ x: ['0%', '-50%'] }}
+          transition={{ duration: 28, ease: 'linear', repeat: Infinity }}
+        >
+          {[...TICKER, ...TICKER, ...TICKER, ...TICKER].map((name, i) => (
+            <div key={i} className="ticker-item">{name}</div>
+          ))}
+        </motion.div>
+      </div>
 
       <PropuestaSection />
 
